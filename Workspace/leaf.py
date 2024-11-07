@@ -1,7 +1,7 @@
 import random
 import pygame 
 
-img = pygame.image.load("leaf")
+img = pygame.image.load("leaf.png")
 
 class leaf:
     def __init__(self, xpos, ypos):

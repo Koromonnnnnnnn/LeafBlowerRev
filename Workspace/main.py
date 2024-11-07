@@ -1,6 +1,7 @@
 import pygame
 import random
 from player import player
+from leaf import leaf
 
 pygame.init()
 
