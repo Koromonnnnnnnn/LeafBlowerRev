@@ -1,9 +1,16 @@
 import pygame
 import random
+import math
+from pygame import mixer
 from player import player
 from leaf import leaf
 
 pygame.init()
+mixer.init()
+
+music = pygame.mixer.music.load("music.mp3")
+pygame.mixer.music.play(-1)  # Loop the music
+pygame.mixer.music.set_volume(1)
 
 screen = pygame.display.set_mode((1280, 720))
 pygame.display.set_caption("Leaf blower")
