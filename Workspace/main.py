@@ -2,7 +2,7 @@ import pygame
 import random
 from player import player
 
-screen = pygame.display.set_mode((1000,800))
+screen = pygame.display.set_mode((1280,720))
 pygame.display.set_caption("Leaf blower")
 clock = pygame.time.Clock()
 
@@ -10,7 +10,7 @@ FPS = 60
 gameOver = False
 
 playerImage = pygame.image.load("player.png")
-playerImage = pygame.transform.scale(playerImage, (300, 300))
+playerImage = pygame.transform.scale(playerImage, (150, 150))
 
 p1 = player(playerImage, xpos=0, ypos = 0)
 playerWidth, playerHeight = playerImage.get_size()
