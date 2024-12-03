@@ -28,7 +28,7 @@ leafImage = pygame.transform.scale(leafImage, (30, 30))
 p1 = player(playerImage, xpos=0, ypos=0)
 playerWidth, playerHeight = playerImage.get_size()
 
-leafs = 0
+leafs = [leaf(random.randint(0, 1280), random.randint(-100, 720), leafImage) for _ in range(20)]
 
 while not gameOver:
     clock.tick(FPS)
@@ -44,10 +44,21 @@ while not gameOver:
 
     screen.fill((0, 0, 0))
 
+    for leaf in leafs:
+        leaf.update(1280, 720)
+        leaf.draw(screen)
+
+        if leaf.colliding(x, y, playerWidth, playerHeight):
+            leafs += 1
+
+            leaf.xpos = random.randint(0, 1280 - leaf.width)
+            leaf.ypos = random.randint(-100, -10)
+
     font = pygame.font.Font(None, 35)
 
     leaftext = font.render(str(leafs), 1, (255, 255, 255))
     screen.blit(leaftext, (1225, 75))
+    screen.blit(leafImage, (1175, 70))
 
     p1.updatePostion(x, y)
     p1.drawPlayer(screen)
