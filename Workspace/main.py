@@ -28,7 +28,12 @@ leafImage = pygame.transform.scale(leafImage, (30, 30))
 p1 = player(playerImage, xpos=0, ypos=0)
 playerWidth, playerHeight = playerImage.get_size()
 
-leafs = [leaf(random.randint(0, 1280), random.randint(-100, 720), leafImage) for _ in range(20)]
+leafslist = [
+    leaf(random.randint(0, 1280), random.randint(-100, 720), leafImage)
+    for _ in range(10)
+]
+
+leafs = 0
 
 while not gameOver:
     clock.tick(FPS)
@@ -44,7 +49,7 @@ while not gameOver:
 
     screen.fill((0, 0, 0))
 
-    for leaf in leafs:
+    for leaf in leafslist:
         leaf.update(1280, 720)
         leaf.draw(screen)
 

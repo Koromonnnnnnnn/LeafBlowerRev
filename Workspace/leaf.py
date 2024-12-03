@@ -10,7 +10,7 @@ class leaf:
         self.ypos = ypos
         self.xvel = random.uniform(-2, 2)
         self.yvel = random.uniform(1, 3)
-        self.image = pygame.transform.scale(image, (30, 30))  
+        self.image = pygame.transform.scale(image, (30, 30))
         self.width, self.height = self.image.get_size()
 
     def update(self, w, h):
@@ -19,7 +19,7 @@ class leaf:
 
         if self.ypos > h or self.xpos < -self.width or self.xpos > w:
             self.xpos = random.randint(0, w - self.width)
-            self.ypos = random.randint(-100, -10) 
+            self.ypos = random.randint(-100, -10)
 
     def draw(self, screen):
         screen.blit(self.image, (int(self.xpos), int(self.ypos)))
