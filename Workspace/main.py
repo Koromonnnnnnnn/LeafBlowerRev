@@ -35,12 +35,12 @@ p1 = player(playerImage, xpos=0, ypos=0)
 
 leafslist = [
     leaf(random.randint(0, 1280), random.randint(-100, 720), leafImage)
-    for _ in range(10)
+    for _ in range(14)
 ]
 
 leafslist2 = [
     leaf(random.randint(0, 1280), random.randint(-100, 720), leafImage2)
-    for _ in range(10)
+    for _ in range(12)
 ]
 
 leafs = 0
@@ -94,8 +94,11 @@ while running:
 
         font = pygame.font.Font(None, 35)
         leaf_text = font.render(str(leafs), 1, (255, 255, 255))
+        leaf_text2 = font.render(str(leafs2), 1, (255, 255, 255))
         screen.blit(leaf_text, (1225, 75))
         screen.blit(leafImage, (1175, 70))
+        screen.blit(leaf_text2, (1225, 105))
+        screen.blit(leafImage2, (1175, 100))
 
         x, y = pygame.mouse.get_pos()
         p1.updatePostion(x - 75, y - 75)
