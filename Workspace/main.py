@@ -27,14 +27,24 @@ playerImage = pygame.transform.scale(playerImage, (150, 150))
 leafImage = pygame.image.load("leaf.png")
 leafImage = pygame.transform.scale(leafImage, (30, 30))
 
+leafImage2 = pygame.image.load("leaf2.png")
+leafImage2 = pygame.transform.scale(leafImage2, (30, 30))
+
 menu = Menu(screen)
 p1 = player(playerImage, xpos=0, ypos=0)
+
 leafslist = [
     leaf(random.randint(0, 1280), random.randint(-100, 720), leafImage)
     for _ in range(10)
 ]
 
+leafslist2 = [
+    leaf(random.randint(0, 1280), random.randint(-100, 720), leafImage2)
+    for _ in range(10)
+]
+
 leafs = 0
+leafs2 = 0
 gamePaused = False
 running = True
 
@@ -72,6 +82,15 @@ while running:
                 leafs += 1
                 leaf.xpos = random.randint(0, 1280 - leaf.width)
                 leaf.ypos = random.randint(-100, -10)
+
+        for leaf2 in leafslist2:
+            leaf2.update(1280, 720)
+            leaf2.draw(screen)
+
+            if leaf2.colliding(p1.xpos, p1.ypos, 150, 150):
+                leafs2 += 1
+                leaf2.xpos = random.randint(0, 1280 - leaf.width)
+                leaf2.ypos = random.randint(-100, -10)
 
         font = pygame.font.Font(None, 35)
         leaf_text = font.render(str(leafs), 1, (255, 255, 255))
