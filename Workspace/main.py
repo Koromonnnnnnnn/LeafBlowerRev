@@ -35,12 +35,12 @@ p1 = player(playerImage, xpos=0, ypos=0)
 
 leafslist = [
     leaf(random.randint(0, 1280), random.randint(-100, 720), leafImage)
-    for _ in range(14)
+    for _ in range(12)
 ]
 
 leafslist2 = [
     leaf(random.randint(0, 1280), random.randint(-100, 720), leafImage2)
-    for _ in range(12)
+    for _ in range(6)
 ]
 
 leafs = 0
@@ -88,7 +88,7 @@ while running:
             leaf2.draw(screen)
 
             if leaf2.colliding(p1.xpos, p1.ypos, 150, 150):
-                leafs2 += 1
+                leafs2 += 2
                 leaf2.xpos = random.randint(0, 1280 - leaf.width)
                 leaf2.ypos = random.randint(-100, -10)
 
