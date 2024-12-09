@@ -89,12 +89,14 @@ while running:
                     menu.upgradeActive = True
 
                 if menu.upgradeActive:
-                    if pygame.draw.polygon(screen, (0, 0, 0), upgrade1, 1).collidepoint(
-                        x, y
-                    ):
-                        if leafs >= 50:
-                            leafMultiplier = 2
-                            leafs -= 50
+                    if menu.upgrade1stat == False:
+                        if pygame.draw.polygon(
+                            screen, (0, 0, 0), upgrade1, 1
+                        ).collidepoint(x, y):
+                            if leafs >= 50:
+                                leafMultiplier = 2
+                                leafs -= 50
+                                menu.upgrade1stat = True
 
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_m and not menu.upgradeActive:
