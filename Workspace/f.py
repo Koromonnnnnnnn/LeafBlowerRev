@@ -1,79 +1,16 @@
-import pygame
-import random
-from pygame import mixer
-from player import player
-from leaf import leaf
-from menu import Menu
-
-# Initialize pygame and mixer
-pygame.init()
-mixer.init()
-
-# Music setup
-mixer.music.load("music.mp3")
-mixer.music.play(-1)
-mixer.music.set_volume(1)
-
-# Screen setup
-screen = pygame.display.set_mode((1280, 720))
-pygame.display.set_caption("Leaf Blower")
-clock = pygame.time.Clock()
-
-# Constants
-FPS = 60
-playerImage = pygame.image.load("player.png")
-playerImage = pygame.transform.scale(playerImage, (150, 150))
-
-leafImage = pygame.image.load("leaf.png")
-leafImage = pygame.transform.scale(leafImage, (30, 30))
-
-leafImage2 = pygame.image.load("leaf2.png")
-leafImage2 = pygame.transform.scale(leafImage2, (30, 30))
-
-menu = Menu(screen)
-p1 = player(playerImage, xpos=0, ypos=0)
-
-leafslist = [
-    leaf(random.randint(0, 1280), random.randint(-100, 720), leafImage)
-    for _ in range(12)
-]
-
-leafslist2 = [
-    leaf(random.randint(0, 1280), random.randint(-100, 720), leafImage2)
-    for _ in range(6)
-]
-
-leafs = 0
-leafs2 = 0
-gamePaused = False
-
-points = [  # resume
-    (587, 233),
-    (587, 200),
-    (722, 197),
-    (727, 233),
-]
-
-points2 = [  # upgrade
-    (587, 295),
-    (730, 294),
-    (735, 338),
-    (588, 344),
-]
-
-running = True
-
 while running:
     clock.tick(FPS)
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
-        elif event.type == pygame.MOUSEBUTTONDOWN:  # For testing purposes
+        elif event.type == pygame.MOUSEBUTTONDOWN:
             x, y = pygame.mouse.get_pos()
             if gamePaused:
+                # Check if the click is inside the "resume" button area
                 if pygame.draw.polygon(screen, (0, 0, 0), points, 1).collidepoint(x, y):
                     gamePaused = False
+                # Check if the click is inside the "upgrade" button area
                 elif pygame.draw.polygon(screen, (0, 0, 0), points2, 1).collidepoint(x, y):
                     menu.upgradeActive = True
 
