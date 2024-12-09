@@ -54,14 +54,14 @@ points = [  # resume
     (727, 233),
 ]
 
-points2 = [  # upgrade
+points2 = [  # upgradescrene
     (587, 295),
     (730, 294),
     (735, 338),
     (588, 344),
 ]
 
-upgrade1 = [  # upgrade
+upgrade1 = [  # upgrade1
     (45, 80),
     (396, 77),
     (400, 112),
