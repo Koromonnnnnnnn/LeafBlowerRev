@@ -61,7 +61,15 @@ points2 = [  # upgrade
     (588, 344),
 ]
 
+upgrade1 = [  # upgrade
+    (45, 80),
+    (396, 77),
+    (400, 112),
+    (45, 118),
+]
+
 running = True
+leafMultiplier = 1
 
 while running:
     clock.tick(FPS)
@@ -71,11 +79,22 @@ while running:
             running = False
         elif event.type == pygame.MOUSEBUTTONDOWN:  # For testing purposes
             x, y = pygame.mouse.get_pos()
+            print(x, y)
             if gamePaused:
                 if pygame.draw.polygon(screen, (0, 0, 0), points, 1).collidepoint(x, y):
                     gamePaused = False
-                elif pygame.draw.polygon(screen, (0, 0, 0), points2, 1).collidepoint(x, y):
+                elif pygame.draw.polygon(screen, (0, 0, 0), points2, 1).collidepoint(
+                    x, y
+                ):
                     menu.upgradeActive = True
+
+                if menu.upgradeActive:
+                    if pygame.draw.polygon(screen, (0, 0, 0), upgrade1, 1).collidepoint(
+                        x, y
+                    ):
+                        if leafs >= 50:
+                            leafMultiplier = 2
+                            leafs -= 50
 
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_m and not menu.upgradeActive:
@@ -101,7 +120,7 @@ while running:
             leaf.draw(screen)
 
             if leaf.colliding(p1.xpos, p1.ypos, 150, 150):
-                leafs += 1
+                leafs += 1 * leafMultiplier
                 leaf.xpos = random.randint(0, 1280 - leaf.width)
                 leaf.ypos = random.randint(-100, -10)
 
@@ -110,7 +129,7 @@ while running:
             leaf2.draw(screen)
 
             if leaf2.colliding(p1.xpos, p1.ypos, 150, 150):
-                leafs2 += 2
+                leafs2 += 2 * leafMultiplier
                 leaf2.xpos = random.randint(0, 1280 - leaf.width)
                 leaf2.ypos = random.randint(-100, -10)
 
