@@ -54,6 +54,9 @@ while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
+        elif event.type == pygame.MOUSEBUTTONDOWN:  # For testing purposes
+            x, y = pygame.mouse.get_pos()
+            print(f"Pos: ({x}, {y})")
 
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_m and not menu.upgradeActive:

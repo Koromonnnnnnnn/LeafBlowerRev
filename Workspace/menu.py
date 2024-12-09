@@ -16,5 +16,5 @@ class Menu:
 
     def drawUpgrade(self):
         self.screen.fill((50, 50, 150))
-        upgradeTxt = self.font.render("Upgrade Screen - Press ESC to go back", True, (255, 255, 255))
+        upgradeTxt = self.font.render("Upgrade Screen - ESC to go back", True, (255, 255, 255))
         self.screen.blit(upgradeTxt, (50, 250))
