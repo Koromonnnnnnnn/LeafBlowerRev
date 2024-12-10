@@ -33,14 +33,17 @@ leafImage2 = pygame.transform.scale(leafImage2, (30, 30))
 menu = Menu(screen)
 p1 = player(playerImage, xpos=0, ypos=0)
 
+leafMultiplier = 1
+spawnMuliplier = 1
+
 leafslist = [
     leaf(random.randint(0, 1280), random.randint(-100, 720), leafImage)
-    for _ in range(12)
+    for _ in range(12 * spawnMuliplier)
 ]
 
 leafslist2 = [
     leaf(random.randint(0, 1280), random.randint(-100, 720), leafImage2)
-    for _ in range(6)
+    for _ in range(6 * spawnMuliplier)
 ]
 
 leafs = 0
@@ -68,8 +71,14 @@ upgrade1 = [  # upgrade1
     (45, 118),
 ]
 
+upgrade2 = [  # upgrade2
+    (47, 151),
+    (500, 147),
+    (509, 187),
+    (46, 187),
+]
+
 running = True
-leafMultiplier = 1
 
 while running:
     clock.tick(FPS)
@@ -97,6 +106,16 @@ while running:
                                 leafMultiplier = 2
                                 leafs -= 50
                                 menu.upgrade1stat = True
+
+                if menu.upgradeActive:
+                    if menu.upgrade2stat == False:
+                        if pygame.draw.polygon(
+                            screen, (0, 0, 0), upgrade2, 1
+                        ).collidepoint(x, y):
+                            if leafs >= 50:
+                                spawnMuliplier = 1.5
+                                leafs -= 50
+                                menu.upgrade2stat = True
 
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_m and not menu.upgradeActive:
