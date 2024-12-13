@@ -179,11 +179,11 @@ while running:
         p1.updatePostion(x - 75, y - 75)
         p1.drawPlayer(screen)
 
-    if hyperSpeed == True: # left off on this - bookmarked the code
-        startTicks=pygame.time.get_ticks()
-        seconds=(pygame.time.get_ticks()-startTicks)/1000
+    if hyperSpeed == True:  # left off on this - bookmarked the code
+        startTicks = pygame.time.get_ticks()
+        seconds = (pygame.time.get_ticks() - startTicks) / 1000
         window.draw_windows()
-        while seconds<=5:
+        while seconds <= 5:
             particleSystem.update_particles()
             particleSystem.draw_particles()
             cockpit.draw_cockpit()
