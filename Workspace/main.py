@@ -27,9 +27,13 @@ window = Window(screen)
 cockpit = Cockpit(screen)
 
 hyperSpeed = False
+worldTwoActive = True
 
 # Constants
 FPS = 60
+world2 = pygame.image.load("worldTwo.png")
+world2 = pygame.transform.scale(world2, (1280, 720))
+
 playerImage = pygame.image.load("player.png")
 playerImage = pygame.transform.scale(playerImage, (150, 150))
 

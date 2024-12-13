@@ -32,7 +32,7 @@ class Menu:
             self.screen.blit(upgrade1, (50, 80))
         else:
             pygame.display.flip()
-            
+
         if self.upgrade2stat == False:
             self.screen.blit(upgrade2, (50, 150))
         else:

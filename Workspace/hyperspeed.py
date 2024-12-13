@@ -2,7 +2,8 @@ import pygame
 import random
 import math
 
-#from last year hyperspeed
+
+# from last year hyperspeed
 class ParticleSystem:
     def __init__(self, surface):
         self.surface = surface
@@ -68,7 +69,12 @@ class ParticleSystem:
             self.ypos[i] += self.yVel[i]
             self.sizes[i] += 0.03
 
-            if self.xpos[i] < 0 or self.xpos[i] > 1280 or self.ypos[i] < 0 or self.ypos[i] > 720:
+            if (
+                self.xpos[i] < 0
+                or self.xpos[i] > 1280
+                or self.ypos[i] < 0
+                or self.ypos[i] > 720
+            ):
                 self.xpos[i] = 640
                 self.ypos[i] = 360
                 self.sizes[i] = 1
@@ -90,4 +96,9 @@ class ParticleSystem:
 
     def draw_particles(self):
         for i in range(len(self.xpos)):
-            pygame.draw.circle(self.surface, self.colors[i], (int(self.xpos[i]), int(self.ypos[i])), int(self.sizes[i]))
+            pygame.draw.circle(
+                self.surface,
+                self.colors[i],
+                (int(self.xpos[i]), int(self.ypos[i])),
+                int(self.sizes[i]),
+            )
