@@ -2,6 +2,7 @@ import pygame
 import random
 import math
 
+#from last year hyperspeed
 class ParticleSystem:
     def __init__(self, surface):
         self.surface = surface
