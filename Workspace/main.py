@@ -4,6 +4,7 @@ from pygame import mixer
 from player import player
 from leaf import leaf
 from menu import Menu
+from hyperspeed import ParticleSystem
 
 # Initialize pygame and mixer
 pygame.init()
