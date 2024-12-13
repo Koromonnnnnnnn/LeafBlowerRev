@@ -2,8 +2,6 @@ import pygame
 import random
 import math
 
-#Repurposed code from my genius hour
-
 class ParticleSystem:
     def __init__(self, surface):
         self.surface = surface
@@ -45,7 +43,6 @@ class ParticleSystem:
 
         radians = math.radians(self.angle)
 
-        # Generate new particles
         for i in range(1):
             if len(self.xpos) < 1000:
                 velX = random.uniform(-1, 1)
@@ -65,7 +62,6 @@ class ParticleSystem:
                 self.xVel.append(normalizedVelX)
                 self.yVel.append(normalizedVelY)
 
-        # Update particles' positions and sizes
         for i in range(len(self.xpos)):
             self.xpos[i] += self.xVel[i]
             self.ypos[i] += self.yVel[i]
@@ -94,61 +90,3 @@ class ParticleSystem:
     def draw_particles(self):
         for i in range(len(self.xpos)):
             pygame.draw.circle(self.surface, self.colors[i], (int(self.xpos[i]), int(self.ypos[i])), int(self.sizes[i]))
-
-class Window:
-    def __init__(self, surface):
-        self.surface = surface
-        self.points = {
-            'left': [(0, 12), (454, 181), (492, 369), (135, 439), (127, 433), (75, 454), (73, 451), (52, 447), (36, 447), (0, 461)],
-            'middle': [(517, 153), (488, 186), (513, 366), (760, 366), (799, 183), (767, 149), (636, 148)],
-            'right': [(812, 188), (1207, 1), (1276, 3), (1275, 420), (1275, 444), (1106, 394), (1056, 387), (787, 379), (775, 349), (817, 181), (1026, 90)]
-        }
-
-    def draw_windows(self):
-        # Set alpha value to make polygons transparent (e.g., 128 out of 255 for 50% transparency)
-        transparent_color = (0, 0, 0, 128)  # RGB + Alpha (0-255)
-        pygame.draw.polygon(self.surface, transparent_color, self.points['left'])
-        pygame.draw.polygon(self.surface, transparent_color, self.points['middle'])
-        pygame.draw.polygon(self.surface, transparent_color, self.points['right'])
-
-class Cockpit:
-    def __init__(self, surface):
-        self.surface = surface
-        self.image = pygame.image.load("cockpit.png")
-        self.image = pygame.transform.scale(self.image, (1280, 720))
-
-    def draw_cockpit(self):
-        self.surface.blit(self.image, (0, 0))
-
-
-pygame.init()
-gamescreen = pygame.display.set_mode((1280, 720))
-pygame.display.set_caption("Space Shuttle Hyperspeed")
-
-particle_system = ParticleSystem(gamescreen)
-window = Window(gamescreen)
-cockpit = Cockpit(gamescreen)
-
-game_over = False
-clock = pygame.time.Clock()
-
-while not game_over:
-    clock.tick(60)
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            game_over = True
-
-    # Update everything
-    gamescreen.fill((0, 0, 0)) 
-
-    
-    window.draw_windows()
-
-    particle_system.update_particles()
-    particle_system.draw_particles()
-
-    cockpit.draw_cockpit()
-
-    pygame.display.flip()
-
-pygame.quit()

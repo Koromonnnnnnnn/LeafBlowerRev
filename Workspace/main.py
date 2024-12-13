@@ -5,6 +5,8 @@ from player import player
 from leaf import leaf
 from menu import Menu
 from hyperspeed import ParticleSystem
+from cockpit import Cockpit
+from window import Window
 
 # Initialize pygame and mixer
 pygame.init()
@@ -19,6 +21,12 @@ mixer.music.set_volume(1)
 screen = pygame.display.set_mode((1280, 720))
 pygame.display.set_caption("Leaf Blower")
 clock = pygame.time.Clock()
+
+particleSystem = ParticleSystem(screen)
+window = Window(screen)
+cockpit = Cockpit(screen)
+
+hyperSpeed = False
 
 # Constants
 FPS = 60
@@ -166,6 +174,14 @@ while running:
         x, y = pygame.mouse.get_pos()
         p1.updatePostion(x - 75, y - 75)
         p1.drawPlayer(screen)
+
+    if hyperSpeed == True:
+        window.draw_windows()
+        particleSystem.update_particles()
+        particleSystem.draw_particles()
+        cockpit.draw_cockpit()
+    else:
+        pygame.display.flip()
 
     if gamePaused:
         if menu.upgradeActive:
