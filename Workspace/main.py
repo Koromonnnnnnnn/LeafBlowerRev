@@ -182,8 +182,8 @@ while running:
     if hyperSpeed == True:  # left off on this - bookmarked the code
         startTicks = pygame.time.get_ticks()
         seconds = (pygame.time.get_ticks() - startTicks) / 1000
-        window.draw_windows()
         while seconds <= 5:
+            window.draw_windows()
             particleSystem.update_particles()
             particleSystem.draw_particles()
             cockpit.draw_cockpit()
