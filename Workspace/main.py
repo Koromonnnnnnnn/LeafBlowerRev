@@ -26,7 +26,7 @@ particleSystem = ParticleSystem(screen)
 window = Window(screen)
 cockpit = Cockpit(screen)
 
-hyperSpeed = False
+hyperSpeed = True
 worldTwoActive = False
 
 # Constants
