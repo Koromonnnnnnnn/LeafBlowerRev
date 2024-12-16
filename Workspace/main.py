@@ -1,5 +1,6 @@
 import pygame
 import random
+import time
 from pygame import mixer
 from player import player
 from leaf import leaf
