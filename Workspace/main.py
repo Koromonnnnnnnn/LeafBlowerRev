@@ -27,7 +27,7 @@ particleSystem = ParticleSystem(screen)
 window = Window(screen)
 cockpit = Cockpit(screen)
 
-hyperSpeed = True
+hyperSpeed = False
 worldTwoActive = False
 
 # Constants
@@ -180,7 +180,9 @@ while running:
         p1.updatePostion(x - 75, y - 75)
         p1.drawPlayer(screen)
 
-    if hyperSpeed == True:  # left off on this - bookmarked the code - seconds aint counting right
+    if (
+        hyperSpeed == True
+    ):  # left off on this - bookmarked the code - seconds aint counting right
         startTicks = pygame.time.get_ticks()
         seconds = (pygame.time.get_ticks() - startTicks) / 1000
         print(seconds)
